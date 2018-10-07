@@ -18,10 +18,48 @@
 
             padding: 10px;
         }
+    
+        h1 {
+            font-size: xx-large;
+            font-weight: normal;
+            color: #8fa1b3;
+            margin: 0;
+        }
+
+        h1::before { content: "# "; }
+
+        h2 {
+            font-size: x-large;
+            font-weight: normal;
+            color: #8fa1b3;
+        }
+
+        h2::before { content: "## "; }
+
+        ul {
+            padding: 0;
+            list-style-type: none;
+        }
+
+        li { color: #bf616a; }
+        li::before { content: "* "; }
+
+        .link { color: #d08770; }
+        .link a { color: #d08770; }
     </style>
 </head>
 <body>
-    <span style="font-size: xx-large; color: #8fa1b3;"># hi</span><br/><br/>
-    <span style="color: #bf616a">*</span> <span style="color: #d08770">[get regd](<a style="color: #d08770" href="https://regd.rijenkii.tk/">https://regd.rijenkii.tk/</a>)</span><br/>
+    <h1>hi</h1>
+    <h2>my projects</h2>
+
+    <ul>
+        <li><span class="link">[get regd](<a href="https://regd.rijenkii.tk/">https://regd.rijenkii.tk/</a>)</span></li>
+    </ul>
+
+    <h2>me on the ｉｎｔｅｒｎｅｔ</h2>
+    <ul>
+        <li><span class="link">[github](<a href="https://github.com/rijenkii">https://github.com/rijenkii</a>)</span></li>
+        <li><span class="link">[vk](<a href="https://vk.com/jijenkii">https://vk.com/jijenkii</a>)</span></li>
+    </ul>
 </body>
 </html>
