@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>regd</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+
+        body {
+            background: #2b303b;
+            color: #c0c5ce;
+            font-family: 'Roboto Mono', monospace;
+
+            padding: 10px;
+        }
+
+        textarea {
+            background: #343d46;
+            color: #a7adba;
+            font-family: 'Roboto Mono', monospace;
+
+            border: 0;
+            padding: 10px;
+            resize: vertical;
+            max-width: 400px;
+            width: 100%;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <span style="font-size: xx-large; color: #8fa1b3;"># regd</span><br/><br/>
+    <textarea type="text" id="input" placeholder="in"></textarea><br/><br/>
+    <textarea type="text" id="output" placeholder="🇴​🇺​🇹" readonly=""></textarea>
+
+    <script type="text/javascript">
+        (function() {
+            'use strict'
+
+            let alpha = ['🇦', '🇧', '🇨', '🇩', '🇪', '🇫', '🇬', '🇭', '🇮', '🇯', '🇰', '🇱', '🇲', '🇳', '🇴', '🇵', '🇶', '🇷', '🇸', '🇹', '🇺', '🇻', '🇼', '🇽', '🇾', '🇿'];
+            let num = ['0⃣','1⃣','2⃣','3⃣','4⃣','5⃣','6⃣','7⃣','8⃣','9⃣'];
+
+            let input = document.getElementById('input');
+            let output = document.getElementById('output');
+
+            input.addEventListener('input', function() {
+                let str = this.value.toLowerCase();
+                output.value = '';
+                for (let i = 0; i < str.length; i++) {
+                    if (/[a-z]/.test(str[i])) {
+                        output.value += alpha[str.charCodeAt(i) - 97] + '​';
+                    } else if (/[0-9]/.test(str[i])) {
+                        output.value += num[str.charCodeAt(i) - 48] + '​';
+                    } else if (str[i] == ' ') {
+                        output.value += '  ';
+                    } else {
+                        output.value += str[i];
+                    }
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
