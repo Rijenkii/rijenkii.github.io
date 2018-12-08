@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Catch</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+        }
+        body {
+            margin: 0;
+            min-height: 100%;
+        }
+
+        #main {
+            width: 607px;
+            height: 500px;
+    
+            position: absolute;
+            margin: auto;
+
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            background: #EEE;
+        }
+
+        #count_wrap {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        #pashka {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="time_wrap">Time left: <span id="time">30</span></div>
+        <div id="count_wrap">Score: <span id="count">-1</span></div>
+        <div id="pashka"></div>
+    </div>
+
+    <script>
+        (function() {
+            'use strict'
+
+            function pashka_event() {
+                let count = document.getElementById('count');
+
+                let main_style = getComputedStyle(document.getElementById('main'));
+                let main_width = parseInt(main_style.width);
+                let main_height = parseInt(main_style.height);
+                
+                let pashka = document.getElementById('pashka')
+                let pashka_style = getComputedStyle(pashka);
+                let pashka_width = parseInt(pashka_style.width);
+                let pashka_height = parseInt(pashka_style.width);
+
+                count.innerHTML = Number(count.innerHTML) + 1;
+
+                pashka.style.top = Math.floor((Math.random() * (main_height - pashka_height))) + 'px';
+                pashka.style.left = Math.floor((Math.random() * (main_width - pashka_width))) + 'px';
+            }
+
+            pashka_event();
+
+            document.getElementById('pashka').addEventListener('mouseenter', pashka_event);
+
+            function loop() {
+                let time = document.getElementById('time');
+                time.innerHTML = Number(time.innerHTML) - 1;
+                if (time.innerHTML != "0") {
+                    setTimeout(loop, 1000);
+                } else {
+                    document.getElementById('pashka').removeEventListener('mouseenter', pashka_event);
+                }
+            }
+
+            setTimeout(loop, 1000);
+        })();
+    </script>
+</body>
+</html>
