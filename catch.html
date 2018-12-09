@@ -32,94 +32,93 @@
             background: var(--base01);
         }
 
-        #time_wrap {
+        #time-wrap {
             position: absolute;
             top: 10px;
             left: 10px;
         }
 
-        #count_wrap {
+        #count-wrap {
             position: absolute;
             top: 10px;
             right: 10px;
         }
 
-        #pashka, #next-pashka {
+        #target, #next-target {
             position: absolute;
             width: 50px;
             height: 50px;
             background: var(--base07);
         }
 
-        #next-pashka {
+        #next-target {
             background: var(--base02);
         }
     </style>
 </head>
 <body>
     <div id="main">
-        <div id="time_wrap">Time left: <span id="time">30</span></div>
-        <div id="count_wrap">Score: <span id="count">-1</span></div>
-        <div id="next-pashka"></div>
-        <div id="pashka"></div>
+        <div id="time-wrap">Time left: <span id="time">30</span></div>
+        <div id="count-wrap">Score: <span id="count">0</span></div>
+        <div id="next-target"></div>
+        <div id="target"></div>
     </div>
 
     <script>
         (function() {
             'use strict'
 
-            // this code is shit and i know it, dont @ me
-
-            let init = false;
-
-            function pashka_event() {
-                let count = document.getElementById('count');
-
-                let main_style = getComputedStyle(document.getElementById('main'));
-                let main_width = parseInt(main_style.width);
-                let main_height = parseInt(main_style.height);
-                
-                let pashka = document.getElementById('pashka')
-                let pashka_style = getComputedStyle(pashka);
-                let pashka_width = parseInt(pashka_style.width);
-                let pashka_height = parseInt(pashka_style.width);
-
-                let next_pashka = document.getElementById('next-pashka');
-
-                count.innerHTML = Number(count.innerHTML) + 1;
-
-                if (!init) {
-                    pashka.style.top = Math.floor((Math.random() * (main_height - pashka_height))) + 'px';
-                    pashka.style.left = Math.floor((Math.random() * (main_width - pashka_width))) + 'px';
-
-                    next_pashka.style.top = Math.floor((Math.random() * (main_height - pashka_height))) + 'px';
-                    next_pashka.style.left = Math.floor((Math.random() * (main_width - pashka_width))) + 'px';
-
-                    init = true;
-                } else {
-                    pashka.style.top = next_pashka.style.top;
-                    pashka.style.left = next_pashka.style.left;
-
-                    next_pashka.style.top = Math.floor((Math.random() * (main_height - pashka_height))) + 'px';
-                    next_pashka.style.left = Math.floor((Math.random() * (main_width - pashka_width))) + 'px';
-                }
+            function randpx(max) {
+                return Math.floor(Math.random() * max) + 'px';
             }
 
-            pashka_event();
+            let [main_width, main_height] = (function(){
+                let style = getComputedStyle(document.getElementById('main'));
+                return [parseInt(style.width), parseInt(style.height)];
+            })();
 
-            document.getElementById('pashka').addEventListener('mousemove', pashka_event);
+            let [target, target_width, target_height] = (function(){
+                let target = document.getElementById('target');
+                let style = getComputedStyle(target);
+                return [target, parseInt(style.width), parseInt(style.height)];
+            })();
 
-            function loop() {
-                let time = document.getElementById('time');
-                time.innerHTML = Number(time.innerHTML) - 1;
-                if (time.innerHTML != "0") {
-                    setTimeout(loop, 1000);
-                } else {
-                    document.getElementById('pashka').removeEventListener('mousemove', pashka_event);
+            let next_target = document.getElementById('next-target');
+
+            let randrange_width = main_width - target_width;
+            let randrange_height = main_height - target_height;
+
+
+            next_target.style.left = randpx(randrange_width);
+            next_target.style.top = randpx(randrange_height);
+            target.style.left = randpx(randrange_width);
+            target.style.top = randpx(randrange_height);
+
+            target.onmousemove = function () {
+                target.onmousemove = function () {
+                    let count = document.getElementById('count');
+                    count.innerHTML = parseInt(count.innerHTML) + 1;
+
+                    target.style.left = next_target.style.left;
+                    target.style.top = next_target.style.top;
+
+                    next_target.style.left = randpx(randrange_width);
+                    next_target.style.top = randpx(randrange_height);
                 }
-            }
 
-            setTimeout(loop, 1000);
+                function loop() {
+                    let time = document.getElementById('time');
+                    time.innerHTML = parseInt(time.innerHTML) - 1;
+
+                    if (time.innerHTML != "0") {
+                        setTimeout(loop, 1000);
+                    } else {
+                        target.onmousemove = undefined;
+                    }
+                }
+
+                setTimeout(loop, 1000);
+            };
         })();
     </script>
 </body>
