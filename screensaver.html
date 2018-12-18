@@ -39,14 +39,16 @@
             let dx = 1, dy = 1;
 
             (function loop() {
-                if (parseInt(jumper.style.left) == 0) {
+                if (parseInt(jumper.style.left) <= 0) {
+                    jumper.style.left = "0px";
                     dx = 1;
                 } else if (parseInt(jumper.style.left) + jumper.offsetWidth >= body.offsetWidth) {
                     jumper.style.left = body.offsetWidth - jumper.offsetWidth + "px";
                     dx = -1;
                 }
 
-                if (parseInt(jumper.style.top) == 0) {
+                if (parseInt(jumper.style.top) <= 0) {
+                    jumper.style.top = "0px";
                     dy = 1;
                 } else if (parseInt(jumper.style.top) + jumper.offsetHeight >= body.offsetHeight) {
                     jumper.style.top = body.offsetHeight - jumper.offsetHeight + "px";
