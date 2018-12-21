@@ -20,14 +20,14 @@
         #jumper {
             position: absolute;
 
-            width: 150px;
+            /*width: 150px;
             height: 100px;
-            background: var(--base07);
+            background: var(--base07);*/
         }
     </style>
 </head>
 <body>
-    <div id="jumper" style="left: 0; top: 0;"></div>
+    <img id="jumper" style="left: 0; top: 0;" />
 
     <script>
         (function() {
@@ -35,6 +35,14 @@
 
             let jumper = document.getElementById("jumper");
             let body = document.body;
+
+            if (window.location.hash === "") {
+                jumper.style.width = "150px";
+                jumper.style.height = "100px";
+                jumper.style.background = "var(--base07)";
+            } else {
+                jumper.src = window.location.hash.substr(1);
+            }
 
             let dx = 1, dy = 1;
 
@@ -57,8 +65,6 @@
 
                 jumper.style.left = parseInt(jumper.style.left) + dx + "px";
                 jumper.style.top = parseInt(jumper.style.top) + dy + "px";
-
-                console.log(jumper.style.left, jumper.style.top);
 
                 setTimeout(loop, 1000 / 60);
             })();
