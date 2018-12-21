@@ -36,13 +36,23 @@
             let jumper = document.getElementById("jumper");
             let body = document.body;
 
-            if (window.location.hash === "") {
-                jumper.style.width = "150px";
-                jumper.style.height = "100px";
-                jumper.style.background = "var(--base07)";
-            } else {
-                jumper.src = window.location.hash.substr(1);
+            function hash_update() {
+                console.log("lol");
+                if (window.location.hash.substr(1) === "") {
+                    jumper.style.width = "150px";
+                    jumper.style.height = "100px";
+                    jumper.style.background = "var(--base07)";
+                    jumper.src = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+                } else {
+                    jumper.style.width = null;
+                    jumper.style.height = null;
+                    jumper.style.background = null;
+                    jumper.src = window.location.hash.substr(1);
+                }
             }
+
+            hash_update();
+            window.onhashchange = hash_update;
 
             let dx = 1, dy = 1;
 
