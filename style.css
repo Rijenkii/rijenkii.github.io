@@ -28,7 +28,8 @@ body {
     color: var(--base05);
     font-family: 'Roboto Mono', monospace;
 
-    padding: 10px;
+    padding: 20px;
+    margin: 0;
 }
 
 h1, h2 {

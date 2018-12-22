@@ -7,14 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <style>
-        html {
+        html, body {
             height: 100%;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100%;
         }
 
         #main {
@@ -28,20 +22,12 @@
             bottom: 0;
             left: 0;
             right: 0;
-
-            background: var(--base01);
         }
 
-        #time-wrap {
+        #stats {
             position: absolute;
-            top: 10px;
-            left: 10px;
-        }
-
-        #count-wrap {
-            position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 20px;
+            right: 20px;
         }
 
         #target, #next-target {
@@ -52,14 +38,17 @@
         }
 
         #next-target {
-            background: var(--base02);
+            background: var(--base01);
         }
     </style>
 </head>
 <body>
+    <h1>catch</h1>
     <div id="main">
-        <div id="time-wrap">Time left: <span id="time">30</span></div>
-        <div id="count-wrap">Score: <span id="count">0</span></div>
+        <div id="stats">
+            Time left: <span id="time">30</span><br/>
+            Score: <span id="count">0</span>
+        </div>
         <div id="next-target"></div>
         <div id="target"></div>
     </div>

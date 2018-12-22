@@ -7,37 +7,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <style>
-        html {
+        html, body {
             height: 100%;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100%;
         }
 
         #jumper {
             position: absolute;
-
-            /*width: 150px;
-            height: 100px;
-            background: var(--base07);*/
         }
 
         #stats {
             position: absolute;
 
-            left: 10px;
-            bottom: 10px;
+            left: 20px;
+            bottom: 20px;
         }
     </style>
 </head>
 <body>
+    <h1>screensaver</h1>
     <img id="jumper" style="left: 0; top: 0;" />
     <div id="stats">
-        <span>Wall hits: <span id="wall_hits">0</span></span><br/>
-        <span>Edge hits: <span id="edge_hits">0</span></span>
+        Wall hits: <span id="wall_hits">0</span><br/>
+        Edge hits: <span id="edge_hits">0</span>
     </div>
 
     <script>
